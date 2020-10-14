@@ -88,7 +88,7 @@ public class List {
         result += " ]";
         return result;
     }
-    
+
     public void swap(int firstPos, int secondPos) {
         int change;
         if (secondPos < firstPos) {
@@ -131,6 +131,17 @@ public class List {
 
     }
 
+    public Item indexAt(int index) {
+
+        if ((index <= this.counter - 1 ) && (index >=0)) {
+            Item iter = this.begin;
+            for (int i=0; i <index; ++i)
+                iter = iter.getNext();
+            return iter;
+        }
+        return null;
+
+    }
 
 }
 
