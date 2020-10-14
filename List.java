@@ -88,7 +88,48 @@ public class List {
         result += " ]";
         return result;
     }
+    
+    public void swap(int firstPos, int secondPos) {
+        int change;
+        if (secondPos < firstPos) {
+            change = secondPos;
+            secondPos = firstPos;
+            firstPos = change;
+        }
+        Item first = indexAt(firstPos);
+        Item second = indexAt(secondPos);
+        Item beforeFirst = indexAt(firstPos - 1);
+        Item beforeSecond = indexAt(secondPos - 1);
+        Item afterFirst = indexAt(firstPos + 1);
+        Item afterSecond = indexAt(secondPos + 1);
+        if((secondPos >= 0) && (secondPos <= counter - 1) && (firstPos >= 0) && (firstPos <= counter - 1) && (firstPos != secondPos)) {
+            if (firstPos == 0) {
+                if(secondPos - firstPos == 1) {
+                    first.setNext(afterSecond);
+                    second.setNext(first);
+                    this.begin = second;
+                }
+                else {
+                    beforeSecond.setNext(first);
+                    first.setNext(afterSecond);
+                    this.begin = second;
+                    second.setNext(afterFirst);
+                }
+            } else {
+                if(secondPos - firstPos == 1) {
+                    first.setNext(afterSecond);
+                    second.setNext(first);
+                    beforeFirst.setNext(second);
+                } else {
+                    beforeFirst.setNext(second);
+                    second.setNext(afterFirst);
+                    beforeSecond.setNext(first);
+                    first.setNext(afterSecond);
+                }
+            }
+        }
 
+    }
 
 
 }
